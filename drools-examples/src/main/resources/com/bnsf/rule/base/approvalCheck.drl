@@ -1,0 +1,17 @@
+package com.bnsf.rule.base;
+
+import org.slf4j.Logger;
+import com.bnsf.model.CustomerCoverage;
+
+global Logger log
+
+rule "approval"
+    when
+        $custCov: CustomerCoverage(
+            age != null,
+            age > 18
+        )
+    then
+        $custCov.setApproved(true);
+        System.out.println("is Approved : "+ $custCov.isApproved());
+end
